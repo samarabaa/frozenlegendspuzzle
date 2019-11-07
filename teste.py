@@ -9,16 +9,89 @@ menu1 = pygame.image.load("menu1.jpg")
 instrucoes1 = pygame.image.load("instrucoes1.jpg")
 opcoes1 = pygame.image.load("1.jpg")
 creditos = pygame.image.load("creditos.jpg")
+teste1 = pygame.image.load("NAOTEMNADA.png")
+
+sol = pygame.image.load("sol.png")
+
+AESTRELA = pygame.image.load("NASCEUMAESTRELA.png")
+
+
+coracao = pygame.image.load("coracao.png")
+
+
+raio = pygame.image.load("raio.png")
+
 
 tela = menu1
+
+menuInicial = True
+instrucoes = False
+opcao = False
+telaDeCreditos = False
+jogar = False
+tela1 = False
+
+
+segundoclique = False
+primeiroclique = True
 
 def updateScreen(menu1):
     screen.blit(menu1, (0, 0))
     pygame.display.update()
-    
+
+def movePeca(peca, pos):
+    if(pos == 1):
+        if(peca == 'estrela'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (231, 153))
+             screen.blit(sol, (37, 527))
+             screen.blit(coracao, (361, 527))
+             screen.blit(raio, (542, 527))
+             pygame.display.update()
+        elif(peca == 'coracao'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (194, 527))
+             screen.blit(sol, (37, 527))
+             screen.blit(coracao, (231, 153))
+             screen.blit(raio, (542, 527))
+             pygame.display.update()
+    elif(pos == 2):
+        if(peca == 'estrela'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (194, 527))
+             screen.blit(sol, (37, 527))
+             screen.blit(coracao, (361, 527))
+             screen.blit(raio, (542, 527))
+             pygame.display.update()
+        elif(peca == 'coracao'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (194, 527))
+             screen.blit(sol, (37, 527))
+             screen.blit(coracao, (361, 527))
+             screen.blit(raio, (542, 527))
+             pygame.display.update()
+    elif(pos == 3):
+        if(peca == 'estrela'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (194, 527))
+             screen.blit(sol, (37, 527))
+             screen.blit(coracao, (361, 527))
+             screen.blit(raio, (542, 527))
+             pygame.display.update()
+        elif(peca == 'coracao'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (194, 527))
+             screen.blit(sol, (37, 527))
+             screen.blit(coracao, (361, 527))
+             screen.blit(raio, (542, 527))
+             pygame.display.update()
+        
+
+updateScreen(tela)
+
 while 1:
     x, y = pygame.mouse.get_pos()
-    print('{} {}'.format(x,y))
+    print('{} {} {} '.format(x,y,opcao))
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -26,36 +99,115 @@ while 1:
             sys.exit()
         #Processamento do Menu
         if  event.type == pygame.MOUSEBUTTONDOWN:
-            #Posicao do Start
-           # if(x > 114  and x < 314 and y > 113 and y < 213):
-           #    screen.blit(tela3, (0,0))
-           #     pygame.display.flip()
-           #     pygame.time.wait(10000)
-           
+            #Posicao do Jogar
+            if(x > 730  and x < 993 and y > 288 and y < 340 and menuInicial):
+               size = width, height = 759 , 688
+               screen = pygame.display.set_mode(size)
+               menuInicial = False
+               jogar = True
+               tela = teste1
+               updateScreen(tela)
+            if(jogar):
+                screen.blit(AESTRELA, (194, 527))
+                screen.blit(sol, (37, 527))
+                screen.blit(coracao, (361, 527))
+                screen.blit(raio, (542, 527))
+                pygame.display.update()
+                if(primeiroclique):
+                   c1x = x
+                   c1y = y
+                   segundoclique = True
+                   primeiroclique = False
+                if(segundoclique):
+                   c2x = x
+                   c2y = y
+                   segundoclique = False
+                   primeiroclique = True
+
+                                         
+                #Define peca e posicao
+                peca = 'oi'
+                pos = 1
+                if(c1x > 194 and c1x < 294 and c1y > 526 and c1y < 620 and primeiroclique):
+                     peca = 'estrela' 
+                     primeiroclique = False
+                     segundoclique = True
+                if(c1x > 361 and c1x < 462 and c1y > 527 and c1y < 621 and primeiroclique):
+                     peca = 'coracao' 
+                     primeiroclique = False
+                     segundoclique = True
+                if(c1x > 542 and c1x < 642 and c1y > 528 and c1y < 620 and primeiroclique):
+                     peca = 'raio'
+                     primeiroclique = False
+                     segundoclique = True
+                if(c1x > 37 and c1x < 144 and c1y > 527 and c1y < 621 and primeiroclique):
+                     peca = 'sol'
+                     primeiroclique = False
+                     segundoclique = True
+                     
+                if(c2x > 231 and c2x < 361 and c2y > 153 and c2y < 252 and segundoclique):
+                     pos = 1
+                     primeiroclique = True
+                     segundoclique = False
+                if(c2x > 366 and c2x < 507 and c2y > 155 and c2y < 252 and segundoclique):
+                     pos = 2
+                     primeiroclique = True
+                     segundoclique = False
+                if(c2x > 232 and c2x < 361 and c2y > 257 and c2y < 360 and segundoclique):
+                     pos = 3
+                     primeiroclique = True
+                     segundoclique = False
+                if(c2x > 367 and c2x < 508 and c2y > 257 and c2y < 359 and segundoclique):
+                     pos = 4
+                     primeiroclique = True
+                     segundoclique = False
+                movePeca(peca,pos)
+                                          
             #Posicao de Instrucoes
-            if(x > 731  and x < 996 and y > 351 and y < 403):
+            if(x > 731  and x < 996 and y > 351 and y < 403 and menuInicial):
+               menuInicial = False
+               instrucoes = True
                tela = instrucoes1
                updateScreen(tela)
-               
-               if(x > 11  and x < 66 and y > 472 and y < 541):
-                    tela = menu1
-                    updateScreen(tela)
+            #Botão de voltar de instrucoes   
+            if(x > 11  and x < 66 and y > 472 and y < 541 and instrucoes):
+               menuInicial = True
+               instrucoes = False
+               tela = menu1
+               updateScreen(tela)
                
             #Posicao do Opcao
-            if(x > 732  and x < 994 and y > 413 and y < 466):
+            if(x > 732  and x < 994 and y > 413 and y < 466 and menuInicial):
+               menuInicial = False
+               opcao = True
+               tela = opcoes1
+               updateScreen(tela)
+            #Posicao do botão créditos   
+            if(x > 724  and x < 976 and y > 292 and y < 345 and opcao):
+               opcao = False
+               telaDeCreditos = True
+               tela = creditos
+               updateScreen(tela)
+            #Posicao do botão voltar da tela de créditos        
+            if(x > 11  and x < 66 and y > 472 and y < 541 and telaDeCreditos):
+               telaDeCreditos = False
+               opcao = True
                tela = opcoes1
                updateScreen(tela)
                
-               if(x > 724  and x < 976 and y > 292 and y < 345):
-                    tela = creditos
-                    updateScreen(tela)
-               if(x > 724  and x < 981 and y > 483 and y < 534):
-                    tela = menu1
-                    updateScreen(tela)
-            #Posicao do Sair
-            if(x > 731  and x < 994 and y > 476 and y < 529):
-                 pygame.quit()
-                 sys.exit()
+             #Posicao do voltar da tela de opcoes
+            if(x > 731  and x < 994 and y > 476 and y < 529 and opcao):
+                menuInicial = True
+                opcao = False
+                #gambiarra
+                x=10
+                y=20
+                tela = menu1
+                updateScreen(tela)
+                   
+            #Posicao do Sair da tela inicial
+            if(x > 731  and x < 994 and y > 476 and y < 529 and menuInicial):
+                pygame.quit()
+                sys.exit()
                 
             
-    updateScreen(tela)
