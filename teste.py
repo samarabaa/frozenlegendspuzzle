@@ -34,13 +34,28 @@ tela1 = False
 
 segundoclique = False
 primeiroclique = True
-
+naoposicionou = True
+peca = 'oi'
+pos = 1
+#fazer tela pra escolha de niveis
+#comparar posicoes e colocar peca se estiver na posicao correta
+#reproduzir som se nao estiver
+#colocar tela cheia e efeitos sonoros
 def updateScreen(menu1):
     screen.blit(menu1, (0, 0))
-    pygame.display.update()
-
+    if(solposicaocorreta):
+        pygame.display.update()
+    elif(estrelaposicaocorreta):
+        pygame.display.update()
+    elif(coracaoposicaocorreta):
+        pygame.display.update()
+    elif(raioposicaocorreta):
+        pygame.display.update()
+        
 def movePeca(peca, pos):
+    #Primeira posicao do quebra-cabeca
     if(pos == 1):
+        
         if(peca == 'estrela'):
              updateScreen(teste1)
              screen.blit(AESTRELA, (231, 153))
@@ -55,10 +70,25 @@ def movePeca(peca, pos):
              screen.blit(coracao, (231, 153))
              screen.blit(raio, (542, 527))
              pygame.display.update()
-    elif(pos == 2):
-        if(peca == 'estrela'):
+        elif(peca == 'raio'):
              updateScreen(teste1)
              screen.blit(AESTRELA, (194, 527))
+             screen.blit(sol, (37, 527))
+             screen.blit(coracao, (361, 527))
+             screen.blit(raio, (231, 153))
+             pygame.display.update()
+        elif(peca == 'sol'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (194, 527))
+             screen.blit(sol, (231, 153))
+             screen.blit(coracao, (361, 527))
+             screen.blit(raio, (542, 527))
+             pygame.display.update()
+    #Segunda posicao do quebra-cabeca         
+    if(pos == 2):
+        if(peca == 'estrela'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (366, 155))
              screen.blit(sol, (37, 527))
              screen.blit(coracao, (361, 527))
              screen.blit(raio, (542, 527))
@@ -67,13 +97,28 @@ def movePeca(peca, pos):
              updateScreen(teste1)
              screen.blit(AESTRELA, (194, 527))
              screen.blit(sol, (37, 527))
+             screen.blit(coracao, (366, 155))
+             screen.blit(raio, (542, 527))
+             pygame.display.update()
+        elif(peca == 'raio'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (194, 527))
+             screen.blit(sol, (37, 527))
+             screen.blit(coracao, (361, 527))
+             screen.blit(raio, (366, 155))
+             pygame.display.update()
+        elif(peca == 'sol'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (194, 527))
+             screen.blit(sol, (366, 155))
              screen.blit(coracao, (361, 527))
              screen.blit(raio, (542, 527))
              pygame.display.update()
-    elif(pos == 3):
+    #Terceira posicao do quebra-cabeca         
+    if(pos == 3):
         if(peca == 'estrela'):
              updateScreen(teste1)
-             screen.blit(AESTRELA, (194, 527))
+             screen.blit(AESTRELA, (232, 257))
              screen.blit(sol, (37, 527))
              screen.blit(coracao, (361, 527))
              screen.blit(raio, (542, 527))
@@ -82,16 +127,64 @@ def movePeca(peca, pos):
              updateScreen(teste1)
              screen.blit(AESTRELA, (194, 527))
              screen.blit(sol, (37, 527))
+             screen.blit(coracao, (232, 257))
+             screen.blit(raio, (542, 527))
+             pygame.display.update()
+        elif(peca == 'raio'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (194, 527))
+             screen.blit(sol, (37, 527))
+             screen.blit(coracao, (361, 527))
+             screen.blit(raio, (232, 257))
+             pygame.display.update()
+        elif(peca == 'sol'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (194, 527))
+             screen.blit(sol, (232, 257))
              screen.blit(coracao, (361, 527))
              screen.blit(raio, (542, 527))
              pygame.display.update()
-        
+    #Quarta posicao do quebra-cabeca
+    if(pos == 4):
+        if(peca == 'estrela'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (367, 257))
+             screen.blit(sol, (37, 527))
+             screen.blit(coracao, (361, 527))
+             screen.blit(raio, (542, 527))
+             pygame.display.update()
+        elif(peca == 'coracao'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (194, 527))
+             screen.blit(sol, (37, 527))
+             screen.blit(coracao, (367, 257))
+             screen.blit(raio, (542, 527))
+             pygame.display.update()
+        elif(peca == 'raio'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (194, 527))
+             screen.blit(sol, (37, 527))
+             screen.blit(coracao, (361, 527))
+             screen.blit(raio, (367, 257))
+             pygame.display.update()
+        elif(peca == 'sol'):
+             updateScreen(teste1)
+             screen.blit(AESTRELA, (194, 527))
+             screen.blit(sol, (367, 257))
+             screen.blit(coracao, (361, 527))
+             screen.blit(raio, (542, 527))
+             pygame.display.update()                
+                
 
 updateScreen(tela)
-
+c1x = 0
+c1y = 0
+c2x = 0
+c2y = 0
 while 1:
+    #Exibe posicao do mouse
     x, y = pygame.mouse.get_pos()
-    print('{} {} {} '.format(x,y,opcao))
+    #print('{} {} {} {} {} {} '.format(x,y,c1x, c1y, c2x, c2y))
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -99,7 +192,21 @@ while 1:
             sys.exit()
         #Processamento do Menu
         if  event.type == pygame.MOUSEBUTTONDOWN:
-            #Posicao do Jogar
+            clicou = True
+            #Posicao do Clique
+            if(jogar and primeiroclique and clicou):
+                c1x = x
+                c1y = y
+                primeiroclique = False
+                segundoclique = True
+                clicou = False
+            if(jogar and segundoclique and clicou):
+                c2x = x
+                c2y = y
+                segundoclique = False
+                primeiroclique = True
+                
+            #Posicao do botao Jogar    
             if(x > 730  and x < 993 and y > 288 and y < 340 and menuInicial):
                size = width, height = 759 , 688
                screen = pygame.display.set_mode(size)
@@ -107,61 +214,47 @@ while 1:
                jogar = True
                tela = teste1
                updateScreen(tela)
+               
             if(jogar):
-                screen.blit(AESTRELA, (194, 527))
-                screen.blit(sol, (37, 527))
-                screen.blit(coracao, (361, 527))
-                screen.blit(raio, (542, 527))
-                pygame.display.update()
-                if(primeiroclique):
-                   c1x = x
-                   c1y = y
-                   segundoclique = True
-                   primeiroclique = False
-                if(segundoclique):
-                   c2x = x
-                   c2y = y
-                   segundoclique = False
-                   primeiroclique = True
+                if(naoposicionou):
+                    screen.blit(AESTRELA, (194, 527))
+                    screen.blit(sol, (37, 527))
+                    screen.blit(coracao, (361, 527))
+                    screen.blit(raio, (542, 527))
+                    pygame.display.update()
+                    naoposicionou = False
+                                      
+                #Define peca
 
-                                         
-                #Define peca e posicao
-                peca = 'oi'
-                pos = 1
-                if(c1x > 194 and c1x < 294 and c1y > 526 and c1y < 620 and primeiroclique):
+                if(c1x > 194 and c1x < 294 and c1y > 526 and c1y < 620 and segundoclique):
                      peca = 'estrela' 
-                     primeiroclique = False
-                     segundoclique = True
-                if(c1x > 361 and c1x < 462 and c1y > 527 and c1y < 621 and primeiroclique):
+                if(c1x > 361 and c1x < 462 and c1y > 527 and c1y < 621 and segundoclique):
                      peca = 'coracao' 
-                     primeiroclique = False
-                     segundoclique = True
-                if(c1x > 542 and c1x < 642 and c1y > 528 and c1y < 620 and primeiroclique):
+                   
+                if(c1x > 542 and c1x < 642 and c1y > 528 and c1y < 620 and segundoclique):
                      peca = 'raio'
-                     primeiroclique = False
-                     segundoclique = True
-                if(c1x > 37 and c1x < 144 and c1y > 527 and c1y < 621 and primeiroclique):
-                     peca = 'sol'
-                     primeiroclique = False
-                     segundoclique = True
-                     
-                if(c2x > 231 and c2x < 361 and c2y > 153 and c2y < 252 and segundoclique):
+                   
+                if(c1x > 37 and c1x < 144 and c1y > 527 and c1y < 621 and segundoclique):
+                     peca = 'sol'                 
+
+                #Define posicao     
+                if(c2x > 231 and c2x < 361 and c2y > 153 and c2y < 252 and primeiroclique):
                      pos = 1
-                     primeiroclique = True
-                     segundoclique = False
-                if(c2x > 366 and c2x < 507 and c2y > 155 and c2y < 252 and segundoclique):
+                
+                if(c2x > 366 and c2x < 507 and c2y > 155 and c2y < 252 and primeiroclique):
                      pos = 2
-                     primeiroclique = True
-                     segundoclique = False
-                if(c2x > 232 and c2x < 361 and c2y > 257 and c2y < 360 and segundoclique):
+               
+                if(c2x > 232 and c2x < 361 and c2y > 257 and c2y < 360 and primeiroclique):
                      pos = 3
-                     primeiroclique = True
-                     segundoclique = False
-                if(c2x > 367 and c2x < 508 and c2y > 257 and c2y < 359 and segundoclique):
+             
+                if(c2x > 367 and c2x < 508 and c2y > 257 and c2y < 359 and primeiroclique):
                      pos = 4
-                     primeiroclique = True
-                     segundoclique = False
-                movePeca(peca,pos)
+                print(peca)
+                print(pos)
+                print(c1x, c1y)
+                print(c2x, c2y)
+                if(primeiroclique):
+                    movePeca(peca,pos)
                                           
             #Posicao de Instrucoes
             if(x > 731  and x < 996 and y > 351 and y < 403 and menuInicial):
