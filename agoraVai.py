@@ -21,7 +21,7 @@ coracao = pygame.image.load("coracao.png")
 
 raio = pygame.image.load("raio.png")
 
-solposicaocorreta = x , y = 231, 153
+soposicaocorreta = [0,0,0,0]
 estrelaposicaocorreta = x , y = 366, 155
 coracaoposicaocorreta = x , y = 232, 257
 raioposicaocorreta = x , y = 367, 257
@@ -56,32 +56,11 @@ def updateScreen(menu1):
 def movePeca(peca, pos):
     #Primeira posicao do quebra-cabeca
     if(pos == 1):
-        
-        if(peca == 'estrela'):
+        if(peca == 'sol'):
              updateScreen(teste1)
-             screen.blit(AESTRELA, (231, 153))
-             screen.blit(sol, (37, 527))
-             screen.blit(coracao, (361, 527))
-             screen.blit(raio, (542, 527))
-             pygame.display.update()
-        elif(peca == 'coracao'):
-             updateScreen(teste1)
-             screen.blit(AESTRELA, (194, 527))
-             screen.blit(sol, (37, 527))
-             screen.blit(coracao, (231, 153))
-             screen.blit(raio, (542, 527))
-             pygame.display.update()
-        elif(peca == 'raio'):
-             updateScreen(teste1)
-             screen.blit(AESTRELA, (194, 527))
-             screen.blit(sol, (37, 527))
-             screen.blit(coracao, (361, 527))
-             screen.blit(raio, (231, 153))
-             pygame.display.update()
-        elif(peca == 'sol'):
-             updateScreen(teste1)
-             screen.blit(AESTRELA, (194, 527))
              screen.blit(sol, (231, 153))
+             soposicaocorreta[0] = 1
+             screen.blit(AESTRELA, (194, 527))
              screen.blit(coracao, (361, 527))
              screen.blit(raio, (542, 527))
              pygame.display.update()
@@ -89,93 +68,22 @@ def movePeca(peca, pos):
     if(pos == 2):
         if(peca == 'estrela'):
              updateScreen(teste1)
-             screen.blit(AESTRELA, (366, 155))
-             screen.blit(sol, (37, 527))
-             screen.blit(coracao, (361, 527))
-             screen.blit(raio, (542, 527))
-             pygame.display.update()
-        elif(peca == 'coracao'):
-             updateScreen(teste1)
-             screen.blit(AESTRELA, (194, 527))
-             screen.blit(sol, (37, 527))
-             screen.blit(coracao, (366, 155))
-             screen.blit(raio, (542, 527))
-             pygame.display.update()
-        elif(peca == 'raio'):
-             updateScreen(teste1)
-             screen.blit(AESTRELA, (194, 527))
-             screen.blit(sol, (37, 527))
-             screen.blit(coracao, (361, 527))
-             screen.blit(raio, (366, 155))
-             pygame.display.update()
-        elif(peca == 'sol'):
-             updateScreen(teste1)
-             screen.blit(AESTRELA, (194, 527))
-             screen.blit(sol, (366, 155))
-             screen.blit(coracao, (361, 527))
-             screen.blit(raio, (542, 527))
-             pygame.display.update()
+             soposicaocorreta[1] = 1
     #Terceira posicao do quebra-cabeca         
     if(pos == 3):
-        if(peca == 'estrela'):
+        if(peca == 'coracao'):
              updateScreen(teste1)
-             screen.blit(AESTRELA, (232, 257))
-             screen.blit(sol, (37, 527))
-             screen.blit(coracao, (361, 527))
-             screen.blit(raio, (542, 527))
-             pygame.display.update()
-        elif(peca == 'coracao'):
-             updateScreen(teste1)
-             screen.blit(AESTRELA, (194, 527))
-             screen.blit(sol, (37, 527))
-             screen.blit(coracao, (232, 257))
-             screen.blit(raio, (542, 527))
-             pygame.display.update()
-        elif(peca == 'raio'):
-             updateScreen(teste1)
-             screen.blit(AESTRELA, (194, 527))
-             screen.blit(sol, (37, 527))
-             screen.blit(coracao, (361, 527))
-             screen.blit(raio, (232, 257))
-             pygame.display.update()
-        elif(peca == 'sol'):
-             updateScreen(teste1)
-             screen.blit(AESTRELA, (194, 527))
-             screen.blit(sol, (232, 257))
-             screen.blit(coracao, (361, 527))
-             screen.blit(raio, (542, 527))
-             pygame.display.update()
+             soposicaocorreta[2] = 1
+        
     #Quarta posicao do quebra-cabeca
     if(pos == 4):
-        if(peca == 'estrela'):
+        if(peca == 'raio'):
              updateScreen(teste1)
-             screen.blit(AESTRELA, (367, 257))
-             screen.blit(sol, (37, 527))
-             screen.blit(coracao, (361, 527))
-             screen.blit(raio, (542, 527))
-             pygame.display.update()
-        elif(peca == 'coracao'):
-             updateScreen(teste1)
-             screen.blit(AESTRELA, (194, 527))
-             screen.blit(sol, (37, 527))
-             screen.blit(coracao, (367, 257))
-             screen.blit(raio, (542, 527))
-             pygame.display.update()
-        elif(peca == 'raio'):
-             updateScreen(teste1)
-             screen.blit(AESTRELA, (194, 527))
-             screen.blit(sol, (37, 527))
-             screen.blit(coracao, (361, 527))
-             screen.blit(raio, (367, 257))
-             pygame.display.update()
-        elif(peca == 'sol'):
-             updateScreen(teste1)
-             screen.blit(AESTRELA, (194, 527))
-             screen.blit(sol, (367, 257))
-             screen.blit(coracao, (361, 527))
-             screen.blit(raio, (542, 527))
-             pygame.display.update()                
-                
+             soposicaocorreta[3] = 1     
+    if(soposicaocorreta[0] == 1):
+       screen.blit(sol, (194, 527))
+    else:
+         
 
 updateScreen(tela)
 c1x = 0
