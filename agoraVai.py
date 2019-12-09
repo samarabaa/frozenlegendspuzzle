@@ -1,3 +1,5 @@
+
+
 import sys, pygame
 pygame.init()
 
@@ -9,19 +11,29 @@ menu1 = pygame.image.load("menu1.jpg")
 instrucoes1 = pygame.image.load("instrucoes1.jpg")
 opcoes1 = pygame.image.load("1.jpg")
 creditos = pygame.image.load("creditos.jpg")
-teste1 = pygame.image.load("NAOTEMNADA.png")
+ashePuzzle = pygame.image.load("ashe-puzzle.jpeg")
+lissandraPuzzle = pygame.image.load("lissandra-puzzle.jpeg")
+niveis = pygame.image.load("niveis.jpeg")
+teste1 = pygame.image.load("niveis.jpeg")
 
-sol = pygame.image.load("sol.png")
+#Peças Ashe
+ashe1 = pygame.image.load("ashe1.jpeg")
+ashe2 = pygame.image.load("ashe2.jpeg")
+ashe3 = pygame.image.load("ashe3.jpeg")
+ashe4 = pygame.image.load("ashe4.jpeg")
 
-AESTRELA = pygame.image.load("NASCEUMAESTRELA.png")
+#Peças Lissandra
+lissandra1 = pygame.image.load("lissandra1.jpeg")
+lissandra2 = pygame.image.load("lissandra2.jpeg")
+lissandra3 = pygame.image.load("lissandra3.jpeg")
+lissandra4 = pygame.image.load("lissandra4.jpeg")
+lissandra5 = pygame.image.load("lissandra5.jpeg")
+lissandra6 = pygame.image.load("lissandra6.jpeg")
+lissandra7 = pygame.image.load("lissandra7.jpeg")
+lissandra8 = pygame.image.load("lissandra8.jpeg")
+lissandra9 = pygame.image.load("lissandra9.jpeg")
 
 
-coracao = pygame.image.load("coracao.png")
-
-
-raio = pygame.image.load("raio.png")
-
-soposicaocorreta = [0,0,0,0]
 estrelaposicaocorreta = x , y = 366, 155
 coracaoposicaocorreta = x , y = 232, 257
 raioposicaocorreta = x , y = 367, 257
@@ -33,7 +45,11 @@ instrucoes = False
 opcao = False
 telaDeCreditos = False
 jogar = False
+niveisTela = False
+asheTela = False
+lissandraTela = False
 tela1 = False
+
 
 
 segundoclique = False
@@ -57,7 +73,7 @@ def movePeca(peca, pos):
     #Primeira posicao do quebra-cabeca
     if(pos == 1):
         if(peca == 'sol'):
-             updateScreen(teste1)
+             updateScreen(ashePuzzle)
              screen.blit(sol, (231, 153))
              soposicaocorreta[0] = 1
              screen.blit(AESTRELA, (194, 527))
@@ -67,22 +83,21 @@ def movePeca(peca, pos):
     #Segunda posicao do quebra-cabeca         
     if(pos == 2):
         if(peca == 'estrela'):
-             updateScreen(teste1)
+             updateScreen(ashePuzzle)
              soposicaocorreta[1] = 1
     #Terceira posicao do quebra-cabeca         
     if(pos == 3):
         if(peca == 'coracao'):
-             updateScreen(teste1)
+             updateScreen(ashePuzzle)
              soposicaocorreta[2] = 1
         
     #Quarta posicao do quebra-cabeca
     if(pos == 4):
         if(peca == 'raio'):
-             updateScreen(teste1)
+             updateScreen(ashePuzzle)
              soposicaocorreta[3] = 1     
     if(soposicaocorreta[0] == 1):
        screen.blit(sol, (194, 527))
-    else:
          
 
 updateScreen(tela)
@@ -93,7 +108,7 @@ c2y = 0
 while 1:
     #Exibe posicao do mouse
     x, y = pygame.mouse.get_pos()
-    #print('{} {} {} {} {} {} '.format(x,y,c1x, c1y, c2x, c2y))
+    print('{} {}'.format(x,y))
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -115,15 +130,51 @@ while 1:
                 segundoclique = False
                 primeiroclique = True
                 
-            #Posicao do botao Jogar    
+             #Posicao do botao Jogar    
             if(x > 730  and x < 993 and y > 288 and y < 340 and menuInicial):
-               size = width, height = 759 , 688
+               size = width, height = 1024 , 547 
                screen = pygame.display.set_mode(size)
                menuInicial = False
-               jogar = True
+               niveisTela = True
                tela = teste1
                updateScreen(tela)
-               
+            #Posicao do botao facil
+            if(x > 656  and x < 944 and y > 339 and y < 402 and niveisTela):
+               size = width, height = 1024 , 547 
+               screen = pygame.display.set_mode(size)
+               niveisTela = False
+               asheTela = True
+               tela = ashePuzzle
+               updateScreen(tela)
+            #Botão de voltar de tela nivel facil   
+            if(x > 11  and x < 66 and y > 472 and y < 541 and asheTela):
+               asheTela = False
+               niveisTela = True
+               tela = niveis
+               updateScreen(tela)
+            #Posicao do botao dificil  
+            if(x > 656  and x < 944 and y > 407 and y < 471 and niveisTela):
+               size = width, height = 1024 , 547 
+               screen = pygame.display.set_mode(size)
+               niveisTela = False
+               lissandraTela = True
+               tela = lissandraPuzzle
+               updateScreen(tela)
+            #Botão de voltar de tela nivel dificil   
+            if(x > 11  and x < 66 and y > 472 and y < 541 and lissandraTela):
+               lissandraTela = False
+               niveisTela = True
+               tela = niveis
+               updateScreen(tela)
+            #Botão de voltar da tela de niveis   
+            if(x > 660  and x < 945 and y > 479 and y < 536 and niveisTela):
+                menuInicial = True
+                niveisTela = False
+                #gambiarra
+                x=10
+                y=20
+                tela = menu1
+                updateScreen(tela)
             if(jogar):
                 if(naoposicionou):
                     screen.blit(AESTRELA, (194, 527))
@@ -213,3 +264,5 @@ while 1:
                 sys.exit()
                 
             
+
+
