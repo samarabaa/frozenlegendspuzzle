@@ -11,10 +11,10 @@ menu1 = pygame.image.load("menu1.jpg")
 instrucoes1 = pygame.image.load("instrucoes1.jpg")
 opcoes1 = pygame.image.load("1.jpg")
 creditos = pygame.image.load("creditos.jpg")
-ashePuzzle = pygame.image.load("ashe-puzzle.jpeg")
-lissandraPuzzle = pygame.image.load("lissandra-puzzle.jpeg")
 niveis = pygame.image.load("niveis.jpeg")
 teste1 = pygame.image.load("niveis.jpeg")
+ashePuzzle = pygame.image.load("ashe-puzzle.jpeg")
+lissandraPuzzle = pygame.image.load("lissandra-puzzle.jpeg")
 
 #Peças Ashe
 ashe1 = pygame.image.load("ashe1.jpeg")
@@ -50,7 +50,7 @@ asheTela = False
 lissandraTela = False
 tela1 = False
 
-
+soposicaocorreta = [0,0,0,0]
 
 segundoclique = False
 primeiroclique = True
@@ -74,11 +74,7 @@ def movePeca(peca, pos):
     if(pos == 1):
         if(peca == 'sol'):
              updateScreen(ashePuzzle)
-             screen.blit(sol, (231, 153))
              soposicaocorreta[0] = 1
-             screen.blit(AESTRELA, (194, 527))
-             screen.blit(coracao, (361, 527))
-             screen.blit(raio, (542, 527))
              pygame.display.update()
     #Segunda posicao do quebra-cabeca         
     if(pos == 2):
